@@ -7,8 +7,10 @@ const port = 3000;
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
+    console.log(req.query);
     res.send(
         root(
+            `<title>HTMX with Node.js</title>`,
             `<div hx-get="/clock" hx-trigger="every 1s" id="mydiv">
                 Waiting for update...
             </div>`
