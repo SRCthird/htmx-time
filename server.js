@@ -8,7 +8,7 @@ const port = 3000;
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    console.log(req.query);
+    console.log(`Request: ${req.ip} ${req.method} ${req.url}`);
     res.send(
         root(
             `<title>HTMX with Node.js</title>`,
@@ -24,10 +24,10 @@ app.get('/checkTime12hr', (req, res) => {
         root(
             `<title>12 Hour Clock with HTMX</title>`,
             `<div id=clockContainer>
-                <button hx-get="/checkTime24hr" hx-target="#clockContainer" hx-swap="outerHTML" id="clock">
+                <button hx-get="/checkTime24hr" hx-target="#clockContainer" hx-swap="outerHTML">
                     Click again for 24 hour format
                 </button>
-                <div hx-get="/clock/?time=12" hx-trigger="every 1s" id="clock">
+                <div hx-get="/clock/?time=12" hx-trigger="every 1s">
                     Waiting for update...
                 </div>
             </div>`
@@ -43,7 +43,7 @@ app.get('/checkTime24hr', (req, res) => {
                 <button hx-get="/checkTime12hr" hx-target="#clockContainer" hx-swap="outerHTML">
                     Click again for 12 hour format
                 </button>
-                <div hx-get="/clock/?time=24" hx-trigger="every 1s" id="clock">
+                <div hx-get="/clock/?time=24" hx-trigger="every 1s">
                     Waiting for update...
                 </div>
             </div>`
@@ -55,11 +55,11 @@ app.get('/clock', (req, res) => {
     const time = new Date()
     if (req.query.time == '24') {
         res.send(
-            format(time, 'HH:mm:ss')
+            format(time, 'HH:mm:ss') // Returns the time in 24 hour format
         );
     } else{
         res.send(
-            time.toLocaleTimeString()
+            time.toLocaleTimeString() // Returns the time in 12 hour format
         );
     }
 });
