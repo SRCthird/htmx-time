@@ -1,4 +1,5 @@
 import express from 'express';
+import { format } from 'date-fns';
 import { root } from './elements.js';
 
 const app = express();
@@ -11,15 +12,56 @@ app.get('/', (req, res) => {
     res.send(
         root(
             `<title>HTMX with Node.js</title>`,
-            `<div hx-get="/clock" hx-trigger="every 1s" id="mydiv">
-                Waiting for update...
+            `<button hx-get="/checkTime12hr" hx-swap="outerHTML">
+                Click to check time
+            </button>`
+        )
+    );
+});
+
+app.get('/checkTime12hr', (req, res) => {
+    res.send(
+        root(
+            `<title>12 Hour Clock with HTMX</title>`,
+            `<div id=clockContainer>
+                <button hx-get="/checkTime24hr" hx-target="#clockContainer" hx-swap="outerHTML" id="clock">
+                    Click again for 24 hour format
+                </button>
+                <div hx-get="/clock/?time=12" hx-trigger="every 1s" id="clock">
+                    Waiting for update...
+                </div>
+            </div>`
+        )
+    );
+});
+
+app.get('/checkTime24hr', (req, res) => {
+    res.send(
+        root(
+            `<title>24 Hour Clock with HTMX</title>`,
+            `<div id=clockContainer>
+                <button hx-get="/checkTime12hr" hx-target="#clockContainer" hx-swap="outerHTML">
+                    Click again for 12 hour format
+                </button>
+                <div hx-get="/clock/?time=24" hx-trigger="every 1s" id="clock">
+                    Waiting for update...
+                </div>
             </div>`
         )
     );
 });
 
 app.get('/clock', (req, res) => {
-    res.send(new Date().toLocaleTimeString());
+    const time = new Date()
+    if (req.query.time == '24') {
+        res.send(
+            format(time, 'HH:mm:ss')
+        );
+    } else{
+        res.send(
+            time.toLocaleTimeString()
+        );
+    }
 });
 
 app.listen(port, () => {
