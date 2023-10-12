@@ -1,7 +1,7 @@
 {
   "name": "htmx-ui",
   "version": "1.0.0",
-  "description": "",
+  "description": "Just a simple clock display testing out htmx",
   "main": "server.js",
   "type": "module",
   "scripts": {
