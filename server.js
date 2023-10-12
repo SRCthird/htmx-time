@@ -21,33 +21,29 @@ app.get('/', (req, res) => {
 
 app.get('/checkTime12hr', (req, res) => {
     res.send(
-        root(
-            `<title>12 Hour Clock with HTMX</title>`,
-            `<div id=clockContainer>
-                <button hx-get="/checkTime24hr" hx-target="#clockContainer" hx-swap="outerHTML">
-                    Click again for 24 hour format
-                </button>
-                <div hx-get="/clock/?time=12" hx-trigger="every 1s">
-                    Waiting for update...
-                </div>
-            </div>`
-        )
+        `<title>12 Hour Clock with HTMX</title>
+        <div id=clockContainer>
+            <button hx-get="/checkTime24hr" hx-target="#clockContainer" hx-swap="outerHTML">
+                Click again for 24 hour format
+            </button>
+            <div hx-get="/clock/?time=12" hx-trigger="every 1s">
+                Waiting for update...
+            </div>
+        </div>`
     );
 });
 
 app.get('/checkTime24hr', (req, res) => {
     res.send(
-        root(
-            `<title>24 Hour Clock with HTMX</title>`,
-            `<div id=clockContainer>
-                <button hx-get="/checkTime12hr" hx-target="#clockContainer" hx-swap="outerHTML">
-                    Click again for 12 hour format
-                </button>
-                <div hx-get="/clock/?time=24" hx-trigger="every 1s">
-                    Waiting for update...
-                </div>
-            </div>`
-        )
+        `<title>24 Hour Clock with HTMX</title>
+        <div id=clockContainer>
+            <button hx-get="/checkTime12hr" hx-target="#clockContainer" hx-swap="outerHTML">
+                Click again for 12 hour format
+            </button>
+            <div hx-get="/clock/?time=24" hx-trigger="every 1s">
+                Waiting for update...
+            </div>
+        </div>`
     );
 });
 
