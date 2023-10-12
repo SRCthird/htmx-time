@@ -1,5 +1,5 @@
 {
-  "name": "htmx-ui",
+  "name": "htmx-time",
   "version": "1.0.0",
   "description": "Just a simple clock display testing out htmx",
   "main": "server.js",
