@@ -2,16 +2,27 @@
   "name": "htmx-time",
   "version": "1.0.0",
   "description": "Just a simple clock display testing out htmx",
-  "main": "server.js",
+  "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "test": "node server.js"
+    "start": "node dist/server.js",
+    "dev": "tsx src/server.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "date-fns": "^2.30.0",
-    "express": "^4.18.2"
+    "express": "^4.21.1",
+    "lit-html": "^3.2.1",
+    "prismjs": "^1.29.0",
+    "tsx": "^4.19.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.5",
+    "nodemon": "^3.1.7",
+    "typescript": "^5.6.3"
   }
 }
