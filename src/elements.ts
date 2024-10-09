@@ -1,11 +1,11 @@
-import { html, TemplateResult, render } from 'lit-html';
+import { html, TemplateResult } from 'lit-html';
 
 /**
  * This is the root HTML of the HTMX application.
  * 
  * @param {string | TemplateResult<1>} head - The HTML code for the head of the root page.
  * @param {string | TemplateResult<1>} body - The HTML code for the body of the root page.
- * @returns {string} - Returns the HTML code for the root of .
+ * @returns {TemplateResult<1>} - Returns the HTML code for the root of .
  */
 export const root = (head: TemplateResult<1>, body: TemplateResult<1>): TemplateResult<1> => {
   if (!head) {
